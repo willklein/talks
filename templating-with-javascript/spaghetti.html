@@ -1,0 +1,218 @@
+<pre class="prettyprint lang-auto linenums:0"><span class="dec">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</span><span class="pln">
+</span><span class="tag">&lt;html</span><span class="pln"> </span><span class="atn">xmlns</span><span class="pun">=</span><span class="atv">"http://www.w3.org/1999/xhtml"</span><span class="tag">&gt;</span><span class="pln">
+</span><span class="tag">&lt;head&gt;</span><span class="pln">
+</span><span class="tag">&lt;meta</span><span class="pln"> </span><span class="atn">http-equiv</span><span class="pun">=</span><span class="atv">"Content-Type"</span><span class="pln"> </span><span class="atn">content</span><span class="pun">=</span><span class="atv">"text/html; charset=ISO-8859-1"</span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln">
+</span><span class="tag">&lt;title&gt;</span><span class="pln">Untitled Document</span><span class="tag">&lt;/title&gt;</span><span class="pln">
+&nbsp; 
+</span><span class="tag">&lt;/head&gt;</span><span class="pln">
+</span><span class="tag">&lt;body&gt;</span><span class="pln">
+
+</span><span class="pun">&lt;?</span><span class="pln">php
+
+include_once </span><span class="pun">(</span><span class="str">"auth.php"</span><span class="pun">);</span><span class="pln">
+include_once </span><span class="pun">(</span><span class="str">"authconfig.php"</span><span class="pun">);</span><span class="pln">
+include_once </span><span class="pun">(</span><span class="str">"check.php"</span><span class="pun">);</span><span class="pln">
+
+</span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">$check</span><span class="pun">[</span><span class="str">'level'</span><span class="pun">]</span><span class="pln"> </span><span class="pun">&gt;</span><span class="pln"> </span><span class="lit">4</span><span class="pun">)</span><span class="pln">
+		</span><span class="pun">{</span><span class="pln">
+			
+</span><span class="kwd">print</span><span class="pln"> </span><span class="str">"&lt;font face='Arial' size='5' color='#FF0000'&gt;"</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">print</span><span class="pln"> </span><span class="str">"&lt;b&gt;Illegal Access&lt;/b&gt;"</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">print</span><span class="pln"> </span><span class="str">"&lt;/font&gt;&lt;br&gt;"</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">print</span><span class="pln"> </span><span class="str">"&lt;font face='Verdana' size='2' color='#000000'&gt;"</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">print</span><span class="pln"> </span><span class="str">"&lt;b&gt;You do not have permission to view this page.&lt;/b&gt;&lt;/font&gt;"</span><span class="pun">;</span><span class="pln">
+			</span><span class="kwd">exit</span><span class="pun">;</span><span class="pln">	</span><span class="com">// Stop script execution</span><span class="pln">
+		</span><span class="pun">}</span><span class="pln">
+
+
+</span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">isset</span><span class="pun">(</span><span class="pln">$_POST</span><span class="pun">[</span><span class="str">'doneaddingstudent'</span><span class="pun">])){</span><span class="pln">
+
+$fname </span><span class="pun">=</span><span class="pln"> $_POST</span><span class="pun">[</span><span class="str">'fname'</span><span class="pun">];</span><span class="pln">
+	$lname </span><span class="pun">=</span><span class="pln"> $_POST</span><span class="pun">[</span><span class="str">'lname'</span><span class="pun">];</span><span class="pln">
+	$age </span><span class="pun">=</span><span class="pln"> $_POST</span><span class="pun">[</span><span class="str">'age'</span><span class="pun">];</span><span class="pln">
+	$gender </span><span class="pun">=</span><span class="pln"> $_POST</span><span class="pun">[</span><span class="str">'gender'</span><span class="pun">];</span><span class="pln">
+	$level </span><span class="pun">=</span><span class="pln"> $_POST</span><span class="pun">[</span><span class="str">'level'</span><span class="pun">];</span><span class="pln">
+	$class_id </span><span class="pun">=</span><span class="pln"> $_POST</span><span class="pun">[</span><span class="str">'class_id'</span><span class="pun">];</span><span class="pln">
+	$instructor </span><span class="pun">=</span><span class="pln"> $_COOKIE</span><span class="pun">[</span><span class="str">'USERNAME'</span><span class="pun">];</span><span class="pln">
+echo $fname</span><span class="pun">;</span><span class="pln">
+echo $lname</span><span class="pun">;</span><span class="pln">
+echo $age</span><span class="pun">;</span><span class="pln">
+echo $gender</span><span class="pun">;</span><span class="pln">
+echo $level</span><span class="pun">;</span><span class="pln">
+echo $class_id</span><span class="pun">;</span><span class="pln">
+	
+	
+	$sql </span><span class="pun">=</span><span class="pln"> mysql_query</span><span class="pun">(</span><span class="str">"INSERT into students VALUES ('', '$fname', '$lname', '$age', '$gender', '$level', '$class_id', '$instructor')"</span><span class="pun">);</span><span class="pln">
+	
+	echo </span><span class="str">'&lt;h1&gt;Student Added!&lt;/h1&gt;'</span><span class="pun">;</span><span class="pln">
+	echo </span><span class="str">'&lt;a href="list_classes.php"&gt;Go back to Classes Lis&lt;/a&gt;'</span><span class="pun">;</span><span class="pln">
+
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="kwd">else</span><span class="pln">
+
+</span><span class="pun">{</span><span class="pln">
+
+</span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">isset</span><span class="pun">(</span><span class="pln">$_POST</span><span class="pun">[</span><span class="str">'addstudent'</span><span class="pun">]))</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+echo </span><span class="str">'&lt;h1&gt;Add Student&lt;/h1&gt;'</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">?&gt;</span><span class="pln">
+
+</span><span class="tag">&lt;form</span><span class="pln"> </span><span class="atn">action</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="atv">""</span><span class="pln"> </span><span class="atn">method</span><span class="pun">=</span><span class="atv">"post"</span><span class="tag">&gt;</span><span class="pln">
+</span><span class="pun">&lt;?</span><span class="pln">php
+
+$class_id </span><span class="pun">=</span><span class="pln"> $_POST</span><span class="pun">[</span><span class="str">'class_id'</span><span class="pun">];</span><span class="pln">
+
+echo </span><span class="str">'First Name: &lt;input type = "text" name = "fname" /&gt;'</span><span class="pun">;</span><span class="pln">
+echo </span><span class="str">'&lt;br /&gt;'</span><span class="pun">;</span><span class="pln">
+echo </span><span class="str">'Last Name: &lt;input type = "text" name = "lname" /&gt;'</span><span class="pun">;</span><span class="pln">
+echo </span><span class="str">'&lt;br /&gt;'</span><span class="pun">;</span><span class="pln">
+echo </span><span class="str">'Age: &lt;input type = "text" name = "age" /&gt;'</span><span class="pun">;</span><span class="pln">
+echo </span><span class="str">'&lt;br /&gt;'</span><span class="pun">;</span><span class="pln">
+echo </span><span class="str">'Male: &lt;input type = "radio" name = "gender" value = "male"/&gt;'</span><span class="pun">;</span><span class="pln">
+echo </span><span class="str">'Female: &lt;input type = "radio" name = "gender" value = "female"/&gt;'</span><span class="pun">;</span><span class="pln">
+echo </span><span class="str">'&lt;br /&gt;'</span><span class="pun">;</span><span class="pln">
+echo </span><span class="str">'Level: &lt;input type = "text" name = "level" /&gt;'</span><span class="pun">;</span><span class="pln">
+echo </span><span class="str">'&lt;br /&gt;
+&lt;input type = "hidden" name = "class_id" value = "'</span><span class="pun">.</span><span class="pln">$class_id</span><span class="pun">.</span><span class="str">'"&gt;
+&lt;button type=button value=Cancel onClick="javascript:history.go(-1);"&gt;Back&lt;/BUTTON&gt;
+&lt;input type = "submit" name = "doneaddingstudent" value = "Add Student" /&gt;
+
+&lt;/form&gt;'</span><span class="pun">;</span><span class="pln">
+
+
+</span><span class="pun">}</span><span class="pln">
+
+
+		
+$class_id </span><span class="pun">=</span><span class="pln"> $_POST</span><span class="pun">[</span><span class="str">'class_id'</span><span class="pun">];</span><span class="pln">
+$new_level</span><span class="pun">=</span><span class="pln">$_POST</span><span class="pun">[</span><span class="str">'new_level'</span><span class="pun">];</span><span class="pln">
+$new_day</span><span class="pun">=</span><span class="pln">$_POST</span><span class="pun">[</span><span class="str">'new_day'</span><span class="pun">];</span><span class="pln">
+$new_time</span><span class="pun">=</span><span class="pln">$_POST</span><span class="pun">[</span><span class="str">'new_time'</span><span class="pun">];</span><span class="pln">
+$new_session</span><span class="pun">=</span><span class="pln">$_POST</span><span class="pun">[</span><span class="str">'new_session'</span><span class="pun">];</span><span class="pln">
+$new_instructor</span><span class="pun">=</span><span class="pln">$_POST</span><span class="pun">[</span><span class="str">'instructor'</span><span class="pun">];</span><span class="pln">
+
+</span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">isset</span><span class="pun">(</span><span class="pln">$_POST</span><span class="pun">[</span><span class="str">'submit'</span><span class="pun">]))</span><span class="pln">
+</span><span class="pun">{</span><span class="pln">
+
+
+ $query</span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="str">"UPDATE classes SET level='$new_level', day='$new_day', time='$new_time', session='$new_session' WHERE id='$class_id'"</span><span class="pun">);</span><span class="pln">
+
+echo $query</span><span class="pun">;</span><span class="pln">
+
+$sql </span><span class="pun">=</span><span class="pln"> mysql_query</span><span class="pun">(</span><span class="pln">$query</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> </span><span class="kwd">die</span><span class="pun">(</span><span class="pln">mysql_error</span><span class="pun">());</span><span class="pln">
+
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="kwd">else</span><span class="pln">
+
+</span><span class="pun">{</span><span class="pln">
+
+$class_id</span><span class="pun">=</span><span class="pln">$_POST</span><span class="pun">[</span><span class="str">'class_id'</span><span class="pun">];</span><span class="pln">
+$level</span><span class="pun">=</span><span class="pln">$_POST</span><span class="pun">[</span><span class="str">'level'</span><span class="pun">];</span><span class="pln">
+$day</span><span class="pun">=</span><span class="pln">$_POST</span><span class="pun">[</span><span class="str">'day'</span><span class="pun">];</span><span class="pln">
+$time</span><span class="pun">=</span><span class="pln">$_POST</span><span class="pun">[</span><span class="str">'time'</span><span class="pun">];</span><span class="pln">
+$session</span><span class="pun">=</span><span class="pln">$_POST</span><span class="pun">[</span><span class="str">'session'</span><span class="pun">];</span><span class="pln">
+$new_instructor</span><span class="pun">=</span><span class="pln">$_POST</span><span class="pun">[</span><span class="str">'instructor'</span><span class="pun">];</span><span class="pln">
+
+echo </span><span class="str">'&lt;table&gt;
+&lt;form action = "" method="post"&gt;
+&lt;input type = "hidden" name = "class_id" value = "'</span><span class="pun">.</span><span class="pln">$class_id</span><span class="pun">.</span><span class="str">'" /&gt;
+&lt;tr&gt;&lt;td&gt;
+&lt;b&gt;ID:&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;'</span><span class="pun">;</span><span class="pln"> 
+echo $class_id</span><span class="pun">;</span><span class="pln">
+echo </span><span class="str">'&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;
+&lt;b&gt;Level&lt;/b&gt;:&lt;/td&gt;
+&lt;td&gt;&lt;input type = "text" name = "new_level" value="'</span><span class="pun">.</span><span class="pln">$level</span><span class="pun">.</span><span class="str">'" /&gt;
+&lt;/td&gt;&lt;/tr&gt;'</span><span class="pun">;</span><span class="pln">
+
+echo </span><span class="str">'&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;
+&lt;b&gt;Day&lt;/b&gt;:&lt;/td&gt;
+&lt;td&gt;&lt;input type = "text" name = "new_day" value="'</span><span class="pun">.</span><span class="pln">$day</span><span class="pun">.</span><span class="str">'" /&gt;
+&lt;/td&gt;&lt;/tr&gt;'</span><span class="pun">;</span><span class="pln">
+
+echo </span><span class="str">'&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;
+&lt;b&gt;Time&lt;/b&gt;:&lt;/td&gt;
+&lt;td&gt;&lt;input type = "text" name = "new_time" value="'</span><span class="pun">.</span><span class="pln">$time</span><span class="pun">.</span><span class="str">'" /&gt;
+&lt;/td&gt;&lt;/tr&gt;'</span><span class="pun">;</span><span class="pln">
+
+echo </span><span class="str">'&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;
+&lt;b&gt;Session&lt;/b&gt;:&lt;/td&gt;
+&lt;td&gt;&lt;input type = "text" name = "new_session" value="'</span><span class="pun">.</span><span class="pln">$session</span><span class="pun">.</span><span class="str">'" /&gt;
+&lt;/td&gt;&lt;/tr&gt;'</span><span class="pun">;</span><span class="pln">
+
+echo </span><span class="str">'&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;
+&lt;b&gt;Instructor&lt;/b&gt;:&lt;/td&gt;
+&lt;td&gt;&lt;select name = "new_instructor" value="'</span><span class="pun">.</span><span class="pln">$instructor</span><span class="pun">.</span><span class="str">'" /&gt;
+&lt;option value = "'</span><span class="pun">.</span><span class="pln">$instructor</span><span class="pun">.</span><span class="str">'" selected = "selected"&gt;"$instructor&lt;/option&gt;'</span><span class="pun">;</span><span class="pln">
+
+
+$query1 </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="str">"SELECT * authuser"</span><span class="pun">);</span><span class="pln">
+$sql1 </span><span class="pun">=</span><span class="pln"> mysql_query</span><span class="pun">(</span><span class="pln">$query1</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> </span><span class="kwd">die</span><span class="pun">(</span><span class="pln">mysql_error</span><span class="pun">());</span><span class="pln">
+
+</span><span class="kwd">while</span><span class="pln"> </span><span class="pun">(</span><span class="pln">$row </span><span class="pun">=</span><span class="pln"> mysql_fetch_array</span><span class="pun">(</span><span class="pln">$sql1</span><span class="pun">))</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+	echo </span><span class="str">'&lt;option value = "\'.$row[\'instructor\'].\'"&gt;$row[\'instructor\']&lt;/option&gt;'</span><span class="pun">;</span><span class="pln">
+
+echo </span><span class="str">'&lt;/td&gt;&lt;/tr&gt;
+
+&lt;button type=button value=Cancel onClick="javascript:history.go(-1);"&gt;Cancel&lt;/BUTTON&gt;
+&lt;input type="submit" name="submit" value = "Edit Attributes" /&gt;&lt;/form&gt;'</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+echo </span><span class="str">'&lt;/table&gt;'</span><span class="pun">;</span><span class="pln">
+
+echo </span><span class="str">'&lt;br /&gt;&lt;br /&gt;&lt;h3&gt;Students&lt;/h3&gt;'</span><span class="pun">;</span><span class="pln">
+
+
+$query </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="str">"SELECT * FROM students WHERE classid = '$class_id'"</span><span class="pun">);</span><span class="pln">
+$sql </span><span class="pun">=</span><span class="pln"> mysql_query</span><span class="pun">(</span><span class="pln">$query</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> </span><span class="kwd">die</span><span class="pun">(</span><span class="pln">mysql_error</span><span class="pun">());</span><span class="pln">
+
+</span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">mysql_num_rows</span><span class="pun">(</span><span class="pln">$sql</span><span class="pun">)</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="lit">0</span><span class="pun">)</span><span class="pln">
+</span><span class="pun">{</span><span class="pln">
+	echo </span><span class="str">"No students in class"</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="kwd">else</span><span class="pln">
+
+</span><span class="pun">{</span><span class="pln">
+	echo </span><span class="str">'&lt;table border = "1"&gt;&lt;tr&gt;&lt;td&gt;ID&lt;/td&gt;&lt;td&gt;First&lt;/td&gt;&lt;td&gt;Last&lt;/td&gt;&lt;td&gt;Age&lt;/td&gt;&lt;td&gt;Level&lt;/td&gt;&lt;/tr&gt;'</span><span class="pun">;</span><span class="pln">
+	</span><span class="kwd">while</span><span class="pln"> </span><span class="pun">(</span><span class="pln">$row </span><span class="pun">=</span><span class="pln"> mysql_fetch_array</span><span class="pun">(</span><span class="pln">$sql</span><span class="pun">))</span><span class="pln">
+
+	</span><span class="pun">{</span><span class="pln">
+		echo </span><span class="str">'&lt;tr&gt;&lt;td&gt;'</span><span class="pun">;</span><span class="pln">
+		echo $row</span><span class="pun">[</span><span class="str">'id'</span><span class="pun">];</span><span class="pln">
+		echo </span><span class="str">'&lt;/td&gt;&lt;td&gt;'</span><span class="pun">;</span><span class="pln">
+		echo $row</span><span class="pun">[</span><span class="str">'fname'</span><span class="pun">];</span><span class="pln">
+		echo </span><span class="str">'&lt;/td&gt;&lt;td&gt;'</span><span class="pun">;</span><span class="pln">
+		echo $row</span><span class="pun">[</span><span class="str">'lname'</span><span class="pun">];</span><span class="pln">
+		echo </span><span class="str">'&lt;/td&gt;&lt;td&gt;'</span><span class="pun">;</span><span class="pln">
+		echo $row</span><span class="pun">[</span><span class="str">'age'</span><span class="pun">];</span><span class="pln">
+		echo </span><span class="str">'&lt;/td&gt;&lt;td&gt;'</span><span class="pun">;</span><span class="pln">
+		echo $row</span><span class="pun">[</span><span class="str">'level'</span><span class="pun">];</span><span class="pln">
+		echo </span><span class="str">'&lt;/td&gt;&lt;td&gt;'</span><span class="pun">;</span><span class="pln">
+		echo </span><span class="str">'&lt;form action="edit_student.php" method = "get"&gt;'</span><span class="pun">;</span><span class="pln">
+		echo </span><span class="str">'&lt;input type = "hidden" name = "sid" value = "'</span><span class="pun">.</span><span class="pln">$row</span><span class="pun">[</span><span class="str">'id'</span><span class="pun">].</span><span class="str">'" /&gt;'</span><span class="pun">;</span><span class="pln">
+		echo </span><span class="str">'&lt;input type = "submit" name = "submit2" value = "Edit" /&gt;&lt;/form&gt;'</span><span class="pun">;</span><span class="pln">
+		echo </span><span class="str">'&lt;/td&gt;&lt;/tr&gt;'</span><span class="pun">;</span><span class="pln">
+	</span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+echo </span><span class="str">'&lt;form action = "" method="post"&gt;'</span><span class="pun">;</span><span class="pln">
+echo </span><span class="str">'&lt;input type = "hidden" name = "class_id" value = "'</span><span class="pun">.</span><span class="pln">$class_id</span><span class="pun">.</span><span class="str">'")'</span><span class="pun">;</span><span class="pln">
+echo </span><span class="str">'&lt;input type = "submit" name = "addstudent" value = "Add Student" /&gt;&lt;/form&gt;'</span><span class="pun">;</span><span class="pln">
+
+echo </span><span class="str">'&lt;/table&gt;'</span><span class="pun">;</span><span class="pln">
+
+
+</span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+</span><span class="pun">?&gt;</span><span class="pln">
+
+</span><span class="tag">&lt;/body&gt;</span><span class="pln">
+</span><span class="tag">&lt;/html&gt;</span></pre>
