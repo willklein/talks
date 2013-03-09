@@ -38,7 +38,7 @@
 
 <section class="slide">
     <h2>Client-side Templating with JavaScript</h2>
-    
+
     <p>Will Klein</p>
     <p>Boston Code Camp 19</p>
     <p>March 9, 2013</p>
@@ -46,15 +46,15 @@
 
 <section class="slide">
     <h2>About Me</h2>
-    
-    <p>http://willkle.in</p>
-    <p>github.com/willklein</p>
+
     <p>engineer @ Travelers</p>
+    <p>github.com/willklein</p>
+    <p>http://willkle.in</p>
 </section>
 
 <section class="slide">
     <h2>Agenda</h2>
-    
+
     <ul>
         <li>A Brief History</li>
         <li>What is Templating</li>
@@ -65,7 +65,7 @@
 
 <section class="slide">
     <h2>A Brief History</h2>
-    
+
     <p>We used to mix our code</p>
     <p>(in a blender)</p>
 </section>
@@ -105,33 +105,33 @@
 <section class="slide">
     <h2>Where Are We Now</h2>
 
+    <p>DOM scripting, the fast way:</p>
     <p><a href="http://jsperf.com/append-html-element-with-attributes/6">jsPerf</a></p>
 
-    <p class="slide">Sometimes, but at what cost?</p>
-    <p class="slide">The developer experience is valuable</p>
+    <p class="slide">Is faster really better?</p>
 </section>
 
 <section class="slide">
-    <h2>A Simple Example</h2>
+    <h2>A Simple Template</h2>
 
     <div><textarea id="code" name="code" class="code" mode="javascript" style="display: none;">
-    var data = {
+        var data = {
         url: "somewhere.html",
         title: "Some link"
-    };
+        };
 
-    // Inline JavaScript for brevity
-    var template = '<a href="{{ url }}">{{ title }}</a>';
+        // Inline JavaScript for brevity
+        var template = '<a href="{{ url }}">{{ title }}</a>';
 
-    var html = Templater.render(template, data);</textarea></div>
+        var html = Mustache.render(template, data);</textarea></div>
 
     <br>
 
-    <p class="slide">&lt;a href="somewhere.html"&gt;Some link&lt;/a&gt;</p>
+    <p>&lt;a href="somewhere.html"&gt;Some link&lt;/a&gt;</p>
 </section>
 
 <section class="slide">
-    <h2>Grow a {{mustache}}</h2>
+    <h2>Mustache</h2>
 
     <p>Released in 2009</p>
     <p>Written in Ruby by Chris Wanstrath</p>
@@ -150,8 +150,8 @@
 <section class="slide">
     <h2>Jade - Node Template Engine</h2>
 
-    <p>Written for Node.js by TJ Holowaychuk</p>
     <p>Inspired by Haml (born in Ruby)</p>
+    <p>Written for Node.js by TJ Holowaychuk</p>
     <p>Can be deployed to the browser</p>
     <p><a href="http://jade-lang.com/" target="_blank">jade-lang.com</a></p>
     <p><a href="http://naltatis.github.com/jade-syntax-docs/" target="_blank">Interactive documentation</a></p>
@@ -160,23 +160,24 @@
 <section class="slide">
     <h2>Transparency</h2>
 
-    <p>Written in CoffeeScript by Jarno Keskikangas</p>
     <p>*Pure* HTML templates</p>
+    <p>Written in CoffeeScript by Jarno Keskikangas</p>
     <p>DOM based</p>
     <p>Semantic data binding</p>
     <p><a href=http://leonidas.github.com/transparency/" target="_blank">Transparency</a></p>
 </section>
 
 <section class="slide">
-  <h2>Stuff to Consider</h2>
+    <h2>Stuff to Think About</h2>
 
-  <ul>
-    <li class="slide">Partials</li>
-    <li class="slide">Helpers and directives</li>
-    <li class="slide">DOM vs string based</li>
-    <li class="slide">Logic-less vs embedded JavaScript</li>
-    <li class="slide">Portability (server-side, cross-language)</li>
-  </ul>
+    <ul>
+        <li class="slide">Style</li>
+        <li class="slide">Partials</li>
+        <li class="slide">Helpers/directives</li>
+        <li class="slide">DOM vs string based</li>
+        <li class="slide">Logic-less vs embedded JavaScript</li>
+        <li class="slide">Portability (server-side, cross-language)</li>
+    </ul>
 </section>
 
 <section class="slide">
@@ -185,29 +186,29 @@
     <ul>
         <li class="slide">&lt;script type="text/html"&gt; tags</li>
         <li class="slide">&lt;template&gt; w/ HTML5</li>
-        <li class="slide">Compile to JavaScript?!</li>
+        <li class="slide">Compile to JavaScript!</li>
     </ul>
 </section>
 
 <section class="slide">
-  <h2>Pre-compilation</h2>
+    <h2>Pre-compilation</h2>
 
-  <ul>
-    <li class="slide">String templates compile to optimized JavaScript functions</li>
-    <li class="slide">Example: <a href="http://akdubya.github.com/dustjs/">Dust.js</a></li>
-    <li class="slide">Node.js</li>
-    <li class="slide">Build process</li>
-  </ul>
+    <ul>
+        <li class="slide">String templates compile to optimized JavaScript functions</li>
+        <li class="slide">Example: <a href="http://akdubya.github.com/dustjs/">Dust.js</a></li>
+        <li class="slide">Node.js</li>
+        <li class="slide">Build process</li>
+    </ul>
 </section>
 
 <section class="slide">
-    <h2>Performance: Who cares?</h2>
+    <h2>Performance</h2>
 
-    <div class="slide">
-        <p>We do actually care about performance</p>
-        <p>Some browsers are (hella) slow</p>
-    </div>
-    <p class="slide">Templating can *improve* responsiveness (perceived performance)</p>
+    <p class="slide">We still need our pages to load (fast)</p>
+    <p class="slide">Some browsers are really slow</p>
+    <p class="slide">Some browsers are really fast</p>
+
+    <p class="slide">Done right, templating can *improve* responsiveness (perceived performance)</p>
 </section>
 
 <section class="slide">
@@ -220,17 +221,26 @@
 </section>
 
 <section class="slide">
-  <h2>Templates Everywhere!</h2>
-  <ul>
-    <li>Dust.js</li>
-    <li>Underscore</li>
-    <li>EJS</li>
-    <li>doT.js</li>
-    <li>JsRender</li>
-    <li>PURE</li>
-    <li>Plates</li>
-    <li>...</li>
-  </ul>
+    <h2>More Template Engines</h2>
+    <ul>
+        <li>Dust.js</li>
+        <li>Underscore</li>
+        <li>EJS</li>
+        <li>doT.js</li>
+        <li>JsRender</li>
+        <li>PURE</li>
+        <li>Plates</li>
+        <li>...</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>Playing Nice w/ Frameworks</h2>
+    <ul>
+        <li>Backbone.js (your choice)</li>
+        <li>Knockout.js (native or your choice)</li>
+        <li>Ember.js (Handlebars)</li>
+    </ul>
 </section>
 
 <section class="slide">
@@ -238,9 +248,9 @@
 
     <p>Templating can provide:</p>
     <ul>
-        <li>cleaner code</li>
-        <li>separation of concerns</li>
-        <li>sanity</li>
+        <li>Cleaner code</li>
+        <li>Separation of concerns</li>
+        <li>Awesome Developer Experience!</li>
     </ul>
 </section>
 
@@ -260,8 +270,8 @@
     <h2>Stay Tuned</h2>
     <ul>
         <li>http://willkle.in</li>
-        <li><a href="http://bostoncodecamp.com">bostoncodecamp.com</a></li>
-        <li>wcklein on MOC</li>
+        <li>github.com/willklein</li>
+        <li>@willslab</li>
     </ul>
     <h3 class="slide">Thanks!</h3>
 </section>
